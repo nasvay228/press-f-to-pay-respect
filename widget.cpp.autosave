@@ -1,0 +1,52 @@
+#include "widget.h"
+#include "ui_widget.h"
+
+Widget::Widget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::Widget)
+{
+    ui->setupUi(this);
+}
+
+Widget::~Widget()
+{
+    delete ui;
+    connect(&timer, SIGNAL(timeout()),this,SLOT(changeCoords()));
+    timer.start(20);
+}
+
+void Widget::mousePressEvent(QMouseEvent *e)
+{
+    int x = e->x();
+    int y = e->y();
+    if ()
+    ui->lcdNumber->display(x);
+
+}
+
+void Widget::paintEvent(QPaintEvent *e)
+{
+    QPainter painter(this);
+    int width = this->width();
+    int height = this->height();
+    painter.setPen(Qt::red);
+    painter.drawRect(0,0,width-1,height-1);
+    painter.drawEllipse()
+}
+
+void Widget::checkCoords()
+{
+    if (ball_x == x and ball_y == y){
+        return true;
+    }
+    else{
+        return false;
+    }
+    
+    
+}
+void Widget::changeCoords()
+{
+    ball_x = rand()%width();
+    ball_y = rand()%height();
+}
